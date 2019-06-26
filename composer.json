@@ -1,6 +1,6 @@
 {
-    "name": "geekdevs/highlight.php",
-    "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
+    "name": "dan-da/highlight.php",
+    "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js. This fork implements default CLI (ansi) color scheme",
     "keywords": [
         "code",
         "syntax",
@@ -14,8 +14,8 @@
         "test": "phpunit -v"
     },
     "support": {
-        "issues": "https://github.com/scrivo/highlight.php/issues",
-        "source": "https://github.com/scrivo/highlight.php"
+        "issues": "https://github.com/dan-da/highlight.php/issues",
+        "source": "https://github.com/dan-da/highlight.php"
     },
     "autoload": {
         "psr-0": {
@@ -40,8 +40,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^4.8|^5.7",
-        "symfony/finder": "^2.8"
+        "phpunit/phpunit": "^4.8|^5.7"
     },
     "require": {
         "ext-json": "*",
