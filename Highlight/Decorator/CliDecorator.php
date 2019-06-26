@@ -40,6 +40,10 @@ class CliDecorator implements Decorator
      */
     private function getColorScheme(array $colorMap): array
     {
+        // note: classes defined at
+        //   https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
+        //
+        // todo: define colors for every known class.
         $colorScheme = [
             'document' => 'light_white',
             'section' => 'green',
