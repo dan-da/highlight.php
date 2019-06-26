@@ -1,28 +1,39 @@
 # highlight.php
 
-[![Build Status](https://travis-ci.org/scrivo/highlight.php.svg?branch=master)](https://travis-ci.org/scrivo/highlight.php)
-[![Latest Packagist release](https://img.shields.io/packagist/v/scrivo/highlight.php.svg)](https://packagist.org/packages/scrivo/highlight.php)
-[![Monthly downloads on Packagist](https://img.shields.io/packagist/dm/scrivo/highlight.php.svg)](https://packagist.org/packages/scrivo/highlight.php/stats)
-
 *highlight.php* is a server side code highlighter written in PHP that currently supports 185 languages. It's a port of [highlight.js](http://www.highlightjs.org) by Ivan Sagalaev that makes full use of the language and style definitions of the original JavaScript project.
+
+The original highlight.js and highlight.php implement highlighting by means of css classes, for use in html.
+
+[geekdevs/highlight.php](https://github.com/geekdevs/highlight.php) is a fork that supports using ansi escape sequences
+for CLI colors in addition to CSS classes, but it does not (at time of writing) define a useful set of default colors.
+
+dan-da/highlight.php is a fork that implements a (partial) default set of CLI colors and really only cares about that.
+
+If you do not need CLI (ansi) colors, you should stick with one of the other forks.
+
 
 ## Installation + Setup
 
 The recommended approach is to install the project through [Composer](https://getcomposer.org/).
 
 ```bash
-composer require scrivo/highlight.php
+composer require dan-da/highlight.php
 ```
 
 If you're not using Composer, ensure that the classes defined in the `Highlight` namespace can be found either by inclusion or by an autoloader. A trivial autoloader for this purpose is included in this project as `Highlight\Autoloader.php`
 
-### Composer Version Constraints
-
-When requiring this project in your `composer.json`, it is recommended you use the [caret version range](https://getcomposer.org/doc/articles/versions.md#caret-version-range-) and use only the major and minor values; i.e. `^9.14`.
-
-It's come to our attention that a lot of tutorials and projects out there are locking themselves into highly specific versions of this project; e.g. `"scrivo/highlight.php": "v9.12.0.1"`. Please do **not** do this or encourage it. We promise a [reliable backward compatibility policy](#backward-compatibility-promise) so there's no reason to lock yourself to such a specific version. By doing this, you are preventing yourself or your users from receiving updates to language definitions and bug fixes.
-
 ## Usage
+
+### CLI Highlighting
+
+```
+    $jsonbuf = json_encode( ['age': 10, 'weight': 90] );
+    $highlighter = new \Highlight\Highlighter(
+            new \Highlight\Decorator\StatefulCliDecorator([])
+    );
+    echo $highlighter->highlight('json', $jsonbuf)->value;
+```
+
 
 The `Highlight\Highlighter` class contains the highlighting functionality. You can choose between two highlighting modes:
 
@@ -87,6 +98,11 @@ This project will follow the same version numbers as the highlight.js project wi
 Despite the fact that the semantic versioning used in this project mirrors that of highlight.js, this project will adhere to [Symfony's Backward Compatibility Promise](https://symfony.com/doc/current/contributing/code/bc.html#using-symfony-code). You can rest assured that there will be no breaking changes during `9.x` and any deprecations will be marked with `@deprecated` and won't be removed until the next major release.
 
 ## Some History
+
+Dan Libby
+June 26, 2019
+
+Forked from geekdevs/highlight.php to add default CLI color scheme.
 
 Geert Bergman
 Sep 30, 2013
